@@ -20,7 +20,9 @@ module ChangelogGenerator
     private
 
       def format(raw)
-        raw.each_line.reject { |x| x.strip == "" }.join
+        commits = raw.split(/^$\n/)
+        commits = commits.reverse.drop(1).reverse
+        commits.map { |commit| "* " + commit }.join
       end
 
       def send_mail
