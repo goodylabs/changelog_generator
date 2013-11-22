@@ -43,7 +43,7 @@ module ChangelogGenerator
       end
 
       def message
-        "Subject: #{subject}\n\n#{changelog}"
+        "Subject: #{subject}\n\n#{subject}\n\n#{changelog}"
       end
 
       def subject
