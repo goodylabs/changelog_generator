@@ -13,7 +13,7 @@ module ChangelogGenerator
         self.changelog = format(raw_changelog)
         send_mail
         `git tag -f last-deploy`
-        `git push --tags origin`
+        `git push --force origin refs/tags/last-deploy:refs/tags/last-deploy`
       end
     end
 
