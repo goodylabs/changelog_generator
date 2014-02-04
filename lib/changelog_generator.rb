@@ -9,6 +9,7 @@ module ChangelogGenerator
 
     def generate
       Dir.chdir(repo_directory) do
+        `git pull --tags`
         raw_changelog = `git log last-deploy..HEAD --no-merges --format=%B`
         self.changelog = format(raw_changelog)
         send_mail
@@ -21,7 +22,6 @@ module ChangelogGenerator
 
       def format(raw)
         commits = raw.split(/^$\n/)
-        commits = commits.reverse.drop(1).reverse
         commits.map { |commit| "* " + commit }.join
       end
 
